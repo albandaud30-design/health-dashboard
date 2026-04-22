@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Monitor</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+    }
+    h1 { font-size: 40px; }
+    #temp {
+      font-size: 60px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+
+<h1>ESP32 Temperature Monitor</h1>
+<div id="temp">-- °C</div>
+
+<script>
+async function fetchTemp() {
+  const res = await fetch("http://192.168.137.65:3000/api/temp");
+  const data = await res.json();
+
+  if (data.temperature !== null) {
+    document.getElementById("temp").innerText =
+      data.temperature.toFixed(1) + " °C";
+  }
+}
+
+setInterval(fetchTemp, 2000);
+</script>
+
+</body>
+</html>
