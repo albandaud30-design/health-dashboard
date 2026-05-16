@@ -32,3 +32,5 @@ health-dashboard/
 │   └── main.py               # FastAPI data ingestion & endpoint infrastructure
 └── frontend/
     └── index.html            # Real-time UI telemetry client layout
+pip install fastapi uvicorn pydantic
+uvicorn main:app --host 0.0.0.0 --port 3000 --reload
